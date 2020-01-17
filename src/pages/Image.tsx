@@ -21,7 +21,8 @@ export default class ImagePage extends Component{
   async componentDidMount() {
     const cs = document.querySelector('canvas') as HTMLCanvasElement
     this.media = new ImageEdit(cs);
-    this.wsInstance = await getInstance(cs);
+    let byteSize = cs.width*cs.height*4;
+    this.wsInstance = await getInstance(byteSize);
     console.log(this.wsInstance);
   }
 

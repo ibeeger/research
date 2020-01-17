@@ -1,20 +1,32 @@
 (module
  (type $FUNCSIG$i (func (result i32)))
  (type $FUNCSIG$iiiiiii (func (param i32 i32 i32 i32 i32 i32) (result i32)))
+ (type $FUNCSIG$ii (func (param i32) (result i32)))
+ (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
+ (type $FUNCSIG$viiii (func (param i32 i32 i32 i32)))
+ (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$iiii (func (param i32 i32 i32) (result i32)))
  (type $FUNCSIG$v (func))
- (import "env" "memory" (memory $0 0))
+ (import "env" "memory" (memory $0 1))
+ (data (i32.const 8) "\0b\00\00\00\01\00\00\00\00\00\00\00\0b\00\00\00\01\03\06\04\t\02\01\08\01\01\t")
+ (data (i32.const 40) "\10\00\00\00\01\00\00\00\03\00\00\00\10\00\00\00\18\00\00\00\18\00\00\00\0b\00\00\00\0b\00\00\00")
+ (data (i32.const 72) "$\00\00\00\01\00\00\00\01\00\00\00$\00\00\00I\00n\00d\00e\00x\00 \00o\00u\00t\00 \00o\00f\00 \00r\00a\00n\00g\00e\00")
+ (data (i32.const 128) "\1a\00\00\00\01\00\00\00\01\00\00\00\1a\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00.\00t\00s\00")
+ (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (table $0 1 funcref)
  (elem (i32.const 0) $null)
- (global $assembly/index/num (mut i32) (i32.const 0))
+ (global $assembly/index/str i32 (i32.const 56))
  (export "memory" (memory $0))
  (export "test" (func $assembly/index/test))
  (export "contrast" (func $assembly/index/contrast))
+ (export "crypto2" (func $assembly/index/crypto2))
+ (export "decode" (func $assembly/index/decode))
+ (export "crypto" (func $assembly/index/crypto))
  (export "sortColors" (func $assembly/index/sortColors))
- (func $assembly/index/test (; 0 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/index/test (; 1 ;) (type $FUNCSIG$i) (result i32)
   i32.const 0
  )
- (func $assembly/index/contrast (; 1 ;) (type $FUNCSIG$iiiiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32) (param $5 i32) (result i32)
+ (func $assembly/index/contrast (; 2 ;) (type $FUNCSIG$iiiiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32) (param $5 i32) (result i32)
   (local $6 f64)
   (local $7 f64)
   local.get $0
@@ -56,7 +68,131 @@
   end
   i32.const 0
  )
- (func $assembly/index/sortColors (; 2 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/array/Array<u8>#get:length (; 3 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=12
+ )
+ (func $~lib/array/Array<u8>#__unchecked_get (; 4 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  local.get $0
+  i32.load offset=4
+  local.get $1
+  i32.const 0
+  i32.shl
+  i32.add
+  i32.load8_u
+ )
+ (func $~lib/array/Array<u8>#__get (; 5 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  local.get $1
+  local.get $0
+  i32.load offset=12
+  i32.ge_u
+  if
+   i32.const 88
+   i32.const 144
+   i32.const 93
+   i32.const 41
+   call $~lib/builtins/abort
+   unreachable
+  end
+  local.get $0
+  local.get $1
+  call $~lib/array/Array<u8>#__unchecked_get
+  local.set $2
+  local.get $2
+ )
+ (func $assembly/index/crypto2 (; 6 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  block $break|0
+   i32.const 0
+   local.set $1
+   loop $loop|0
+    local.get $1
+    local.get $0
+    i32.lt_s
+    i32.eqz
+    br_if $break|0
+    local.get $1
+    local.get $1
+    i32.load8_u
+    global.get $assembly/index/str
+    local.get $1
+    global.get $assembly/index/str
+    call $~lib/array/Array<u8>#get:length
+    i32.rem_s
+    call $~lib/array/Array<u8>#__get
+    i32.sub
+    i32.store8
+    local.get $1
+    i32.const 1
+    i32.add
+    local.set $1
+    br $loop|0
+   end
+   unreachable
+  end
+  global.get $assembly/index/str
+  i32.const 3
+  call $~lib/array/Array<u8>#__get
+ )
+ (func $assembly/index/decode (; 7 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  block $break|0
+   i32.const 0
+   local.set $1
+   loop $loop|0
+    local.get $1
+    local.get $0
+    i32.lt_s
+    i32.eqz
+    br_if $break|0
+    local.get $1
+    local.get $1
+    i32.load8_u
+    global.get $assembly/index/str
+    local.get $1
+    call $~lib/array/Array<u8>#__get
+    i32.add
+    i32.store8
+    local.get $1
+    i32.const 1
+    i32.add
+    local.set $1
+    br $loop|0
+   end
+   unreachable
+  end
+  global.get $assembly/index/str
+  i32.const 1
+  call $~lib/array/Array<u8>#__get
+ )
+ (func $assembly/index/crypto (; 8 ;) (type $FUNCSIG$vi) (param $0 i32)
+  (local $1 i32)
+  block $break|0
+   i32.const 0
+   local.set $1
+   loop $loop|0
+    local.get $1
+    i32.const 56
+    call $~lib/array/Array<u8>#get:length
+    i32.lt_s
+    i32.eqz
+    br_if $break|0
+    local.get $1
+    global.get $assembly/index/str
+    local.get $1
+    call $~lib/array/Array<u8>#__get
+    i32.store16
+    local.get $1
+    i32.const 1
+    i32.add
+    local.set $1
+    br $loop|0
+   end
+   unreachable
+  end
+ )
+ (func $assembly/index/sortColors (; 9 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -253,6 +389,6 @@
   end
   i32.const 0
  )
- (func $null (; 3 ;) (type $FUNCSIG$v)
+ (func $null (; 10 ;) (type $FUNCSIG$v)
  )
 )

@@ -1,6 +1,5 @@
 
 
-var num = 0;
 
 export function test():i32 {
   return 0
@@ -17,6 +16,36 @@ export function contrast(r1:i32, g1:i32, b1:i32,r2:i32, g2:i32, b2:i32):i32{
   return 0;
 }
  
+
+const str:u8[] = [1,3,6,4,9,2,1,8,1,1,9]
+
+export function crypto2(d:i32):i32 {
+  for(let i=0; i<d; i++) {
+    store<u8>(i, load<u8>(i)-str[i%str.length]);
+  }
+  return str[3];
+}
+
+
+
+
+export function decode(d:i32):i32 {
+  for(let i=0; i<d; i++) {
+    store<u8>(i, load<u8>(i)+str[i%str.length]);
+  }
+  return str[1];
+}
+
+
+
+
+
+export function crypto(d:i32):void {
+  for(let i=0; i<str.length; i++) {
+    store<u16>(i, str[i]);
+  }
+}
+
 
 
 //排序颜色

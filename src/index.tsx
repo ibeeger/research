@@ -7,6 +7,7 @@ import { HashRouter,  Route, Switch} from 'react-router-dom';
 import ErrorPage from './pages/Error'
 import IndexPage from './pages/Index'
 import ImagePage from './pages/Image'
+import CryPtoPage from './pages/CryPto'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/" component={IndexPage} />
       <Route exact path="/img" component={ImagePage} />
+      <Route exact path="/cry" component={CryPtoPage} />
       <Route component={ErrorPage} />
     </Switch>
   </HashRouter>

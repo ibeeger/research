@@ -1,6 +1,18 @@
 
 import {instantiateStreaming} from 'assemblyscript/lib/loader';
 
+
+type TypedArray =
+  | Int8Array
+  | Uint8Array
+  | Uint8ClampedArray
+  | Int16Array
+  | Uint16Array
+  | Int32Array
+  | Uint32Array
+  | Float32Array
+  | Float64Array;
+
 export function loadLocalFile(file:any,callback:Function){
   var fileReader = new FileReader();
   fileReader.onload = function(e:any) {
@@ -9,9 +21,9 @@ export function loadLocalFile(file:any,callback:Function){
   fileReader.readAsArrayBuffer(file);
 }
 
-export async function getInstance(canvas:HTMLCanvasElement) {
-  let byteSize = canvas.width*canvas.height*4;
+export async function getInstance(byteSize:number) {
   let initial = 2 * (((byteSize + 0xffff) & ~0xffff) >>> 16);
+  console.log('initial',initial +'kb')
   let memory = new WebAssembly.Memory({ initial });
   let importObject = { env: { memory, abort: () => console.log("Abort!") }};
   const webasly = await instantiateStreaming(
@@ -21,6 +33,28 @@ export async function getInstance(canvas:HTMLCanvasElement) {
   const mem = new Uint8Array(memory.buffer);
   return {...webasly,mem}
 }
+
+
+export function str2ab(input: string): ArrayBuffer {
+  const view = str2Uint8Array(input)
+  return view.buffer
+}
+
+/** Convert String to Uint8Array */
+export function str2Uint8Array(input: string): Uint8Array {
+  const encoder = new TextEncoder()
+  const view = encoder.encode(input)
+  return view
+}
+export function ab2str(
+  input: ArrayBuffer | Uint8Array | Int8Array | Uint16Array | Int16Array | Uint32Array | Int32Array,
+  outputEncoding: string = 'utf8',
+): string {
+  const decoder = new TextDecoder(outputEncoding)
+  return decoder.decode(input)
+}
+
+
 
 
 export function showImage(bf:any){
