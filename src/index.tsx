@@ -8,6 +8,7 @@ import ErrorPage from './pages/Error'
 import IndexPage from './pages/Index'
 import ImagePage from './pages/Image'
 import CryPtoPage from './pages/CryPto'
+import AudioEffect from './pages/AudioEffect'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route exact path="/" component={IndexPage} />
       <Route exact path="/img" component={ImagePage} />
       <Route exact path="/cry" component={CryPtoPage} />
+      <Route exact path="/aud" component={AudioEffect} />
       <Route component={ErrorPage} />
     </Switch>
   </HashRouter>
