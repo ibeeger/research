@@ -1,5 +1,4 @@
 import React,{Component} from 'react'
-import Media from '../utils/media'
 
 export default class AudioEffect extends Component {
 

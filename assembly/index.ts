@@ -6,6 +6,16 @@ export function test():i32 {
 }
 
 
+export function calculation(d:i32):i32{
+  let t=0;
+  for(let i =d; i>0; i--){
+    t++;
+  }
+  return t;
+}
+
+
+
 //对比颜色
 export function contrast(r1:i32, g1:i32, b1:i32,r2:i32, g2:i32, b2:i32):i32{
   let color1 = r1*0.299 + g1*0.578 + b1*0.114;

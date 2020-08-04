@@ -9,7 +9,9 @@ import IndexPage from './pages/Index'
 import ImagePage from './pages/Image'
 import CryPtoPage from './pages/CryPto'
 import AudioEffect from './pages/AudioEffect'
+import Calculation from './pages/calculation'
 import * as serviceWorker from './serviceWorker';
+
 
 ReactDOM.render(
   <ConfigProvider locale={zh_CN}>
@@ -19,6 +21,7 @@ ReactDOM.render(
       <Route exact path="/img" component={ImagePage} />
       <Route exact path="/cry" component={CryPtoPage} />
       <Route exact path="/aud" component={AudioEffect} />
+      <Route exact path="/math" component={Calculation} />
       <Route component={ErrorPage} />
     </Switch>
   </HashRouter>
