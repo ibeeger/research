@@ -22,16 +22,28 @@ export function loadLocalFile(file:any,callback:Function){
 }
 
 export async function getInstance(byteSize:number) {
-  let initial = 2 * (((byteSize + 0xffff) & ~0xffff) >>> 16);
-  console.log('initial',initial +'kb')
-  let memory = new WebAssembly.Memory({ initial });
+  // let initial = 2 * (((byteSize + 0xffff) & ~0xffff) >>> 16);
+  // console.log('initial',initial +'kb')
+  let memory = new WebAssembly.Memory({ initial:100 });
+  console.log('memory',memory)
   let importObject = { env: { memory, abort: () => console.log("Abort!") }};
   const webasly = await instantiateStreaming(
           fetch("/wasm/optimized.wasm?a="+Date.now()),
           importObject
         )
   const mem = new Uint8Array(memory.buffer);
+  // console.log('webasly',webasly, mem);
+
   return {...webasly,mem}
+}
+
+export async function getMemoryInstance(byteSize:number) {
+  // body...
+  let memory = new WebAssembly.Memory({ initial: 100});
+  let importObject = { env: { memory, abort: () => console.log("Abort!") }};
+  const was = await instantiateStreaming(fetch("/wasm/untouched.wasm?a="+Date.now()), importObject);
+  const mem = new Uint8Array(memory.buffer);
+  return {...was, mem};
 }
 
 

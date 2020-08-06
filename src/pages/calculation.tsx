@@ -27,7 +27,7 @@ export default class Calculation extends Component{
   }
 
   async componentDidMount() {
-    let num = Number(this.state.name)*1000;
+    let num = Number(this.state.name);
     this.wsInstance = await getInstance(num);
   }
    

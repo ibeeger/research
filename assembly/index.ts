@@ -6,13 +6,12 @@ export function test():i32 {
 }
 
 
-export function calculation(d:i32):i32{
-  let t=0;
-  for(let i =d; i>0; i--){
-    t++;
+export function calculation(d:i32):void{
+  for(let i = 0; i<d; i++){
+    store<u16>(i, d-i);
   }
-  return t;
 }
+
 
 
 
@@ -56,6 +55,32 @@ export function crypto(d:i32):void {
   }
 }
 
+
+export function getmemory (i:i32):i32 {
+   return load<u8>(i);
+};
+
+
+
+export function clearColor(byte:i32, sr:i8, sg:i8, sb:i8):void{
+   for(let j=0; j<byte; j+=4){
+     let r = load<i32>(j);
+     let g = load<i32>(j+1);
+     let b = load<i32>(j+2);
+     let a = load<i32>(j+3);
+     if(contrast(r,g,b, sr,sg,sb)){
+       store<i32>(j, 255);
+       store<i32>(j+1, 2);
+       store<i32>(j+2, 255);
+       store<i32>(j+3, 222);
+     } else {
+       store<i32>(j, r);
+       store<i32>(j+1, g);
+       store<i32>(j+2, b);
+       store<i32>(j+3, a);
+     }
+   }
+}
 
 
 //排序颜色

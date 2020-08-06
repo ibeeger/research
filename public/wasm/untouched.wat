@@ -1,10 +1,10 @@
 (module
  (type $FUNCSIG$i (func (result i32)))
- (type $FUNCSIG$ii (func (param i32) (result i32)))
+ (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$iiiiiii (func (param i32 i32 i32 i32 i32 i32) (result i32)))
+ (type $FUNCSIG$ii (func (param i32) (result i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
  (type $FUNCSIG$viiii (func (param i32 i32 i32 i32)))
- (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$iiii (func (param i32 i32 i32) (result i32)))
  (type $FUNCSIG$v (func))
  (import "env" "memory" (memory $0 1))
@@ -23,37 +23,36 @@
  (export "crypto2" (func $assembly/index/crypto2))
  (export "decode" (func $assembly/index/decode))
  (export "crypto" (func $assembly/index/crypto))
+ (export "getmemory" (func $assembly/index/getmemory))
+ (export "clearColor" (func $assembly/index/clearColor))
  (export "sortColors" (func $assembly/index/sortColors))
  (func $assembly/index/test (; 1 ;) (type $FUNCSIG$i) (result i32)
   i32.const 0
  )
- (func $assembly/index/calculation (; 2 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/index/calculation (; 2 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
-  (local $2 i32)
-  i32.const 0
-  local.set $1
   block $break|0
-   local.get $0
-   local.set $2
+   i32.const 0
+   local.set $1
    loop $loop|0
-    local.get $2
-    i32.const 0
-    i32.gt_s
+    local.get $1
+    local.get $0
+    i32.lt_s
     i32.eqz
     br_if $break|0
+    local.get $1
+    local.get $0
+    local.get $1
+    i32.sub
+    i32.store16
     local.get $1
     i32.const 1
     i32.add
     local.set $1
-    local.get $2
-    i32.const 1
-    i32.sub
-    local.set $2
     br $loop|0
    end
    unreachable
   end
-  local.get $1
  )
  (func $assembly/index/contrast (; 3 ;) (type $FUNCSIG$iiiiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32) (param $5 i32) (result i32)
   (local $6 f64)
@@ -224,7 +223,111 @@
    unreachable
   end
  )
- (func $assembly/index/sortColors (; 10 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/index/getmemory (; 10 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load8_u
+ )
+ (func $assembly/index/clearColor (; 11 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+  (local $4 i32)
+  (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
+  (local $8 i32)
+  block $break|0
+   i32.const 0
+   local.set $4
+   loop $loop|0
+    local.get $4
+    local.get $0
+    i32.lt_s
+    i32.eqz
+    br_if $break|0
+    local.get $4
+    i32.load
+    local.set $5
+    local.get $4
+    i32.const 1
+    i32.add
+    i32.load
+    local.set $6
+    local.get $4
+    i32.const 2
+    i32.add
+    i32.load
+    local.set $7
+    local.get $4
+    i32.const 3
+    i32.add
+    i32.load
+    local.set $8
+    local.get $5
+    local.get $6
+    local.get $7
+    local.get $1
+    i32.const 24
+    i32.shl
+    i32.const 24
+    i32.shr_s
+    local.get $2
+    i32.const 24
+    i32.shl
+    i32.const 24
+    i32.shr_s
+    local.get $3
+    i32.const 24
+    i32.shl
+    i32.const 24
+    i32.shr_s
+    call $assembly/index/contrast
+    if
+     local.get $4
+     i32.const 255
+     i32.store
+     local.get $4
+     i32.const 1
+     i32.add
+     i32.const 2
+     i32.store
+     local.get $4
+     i32.const 2
+     i32.add
+     i32.const 255
+     i32.store
+     local.get $4
+     i32.const 3
+     i32.add
+     i32.const 222
+     i32.store
+    else
+     local.get $4
+     local.get $5
+     i32.store
+     local.get $4
+     i32.const 1
+     i32.add
+     local.get $6
+     i32.store
+     local.get $4
+     i32.const 2
+     i32.add
+     local.get $7
+     i32.store
+     local.get $4
+     i32.const 3
+     i32.add
+     local.get $8
+     i32.store
+    end
+    local.get $4
+    i32.const 4
+    i32.add
+    local.set $4
+    br $loop|0
+   end
+   unreachable
+  end
+ )
+ (func $assembly/index/sortColors (; 12 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -421,6 +524,6 @@
   end
   i32.const 0
  )
- (func $null (; 11 ;) (type $FUNCSIG$v)
+ (func $null (; 13 ;) (type $FUNCSIG$v)
  )
 )
