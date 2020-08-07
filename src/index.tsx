@@ -8,6 +8,7 @@ import ErrorPage from './pages/Error'
 import IndexPage from './pages/Index'
 import ImagePage from './pages/Image'
 import ImagePage2 from './pages/Image2'
+import ImagePage3 from './pages/Image3'
 import CryPtoPage from './pages/CryPto'
 import AudioEffect from './pages/AudioEffect'
 import Calculation from './pages/calculation'
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Route exact path="/" component={IndexPage} />
       <Route exact path="/img" component={ImagePage} />
       <Route exact path="/img2" component={ImagePage2} />
+      <Route exact path="/img3" component={ImagePage3} />
       <Route exact path="/cry" component={CryPtoPage} />
       <Route exact path="/aud" component={AudioEffect} />
       <Route exact path="/math" component={Calculation} />

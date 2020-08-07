@@ -48,7 +48,6 @@ export function decode(d:i32):i32 {
 
 
 
-
 export function crypto(d:i32):void {
   for(let i=0; i<str.length; i++) {
     store<u16>(i, str[i]);
