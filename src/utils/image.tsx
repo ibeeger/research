@@ -26,6 +26,7 @@ export default class ImageEdit {
       let byteSize = data.length;
       // mem.set(_data);
       data.set(_data.subarray(0, byteSize));
+      // data.set(_data);
       console.log(data)
 
       ctx.putImageData(imageData,0,0);

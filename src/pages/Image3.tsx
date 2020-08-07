@@ -39,18 +39,18 @@ export default class ImagePage extends Component{
     let was = this.wsInstance;
     fetch('http://localhost/file/sound.mp3',{
     }).then(res=>{
-      // return res.arrayBuffer();
-      return res.blob();
+      return res.arrayBuffer();
+      // return res.blob();
     }).then((r)=>{
-      // let rr = new Uint8Array(r);
-      let url = window.URL.createObjectURL(r);
-      let rs = window.URL.revokeObjectURL(url)
-      console.log(url, rs);
+      let rr = new Uint8Array(r);
+      // let url = window.URL.createObjectURL(r);
+      // let rs = window.URL.revokeObjectURL(url)
+      // console.log(url, rs);
 
 
       // let bl = new Blob([r],{type: r.type});
       // console.log(bl);
-      // this.media.updateCanvas3(rr,  was.mem); 
+      this.media.updateCanvas3(rr,  was.mem); 
     })
   }
 
