@@ -26,6 +26,13 @@ canvas{
   opacity: 1;
 }
 
+.canvas-cs{
+    background-color: #fff;
+    left: 0;
+    top:0;
+    position: absolute;
+    left: 0;
+}
 header{
   height: 50px;
   position: fixed;

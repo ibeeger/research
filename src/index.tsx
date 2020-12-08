@@ -9,6 +9,7 @@ import IndexPage from './pages/Index'
 import ImagePage from './pages/Image'
 import ImagePage2 from './pages/Image2'
 import ImagePage3 from './pages/Image3'
+import VideoPage from './pages/Video'
 import CryPtoPage from './pages/CryPto'
 import AudioEffect from './pages/AudioEffect'
 import Calculation from './pages/calculation'
@@ -21,6 +22,7 @@ ReactDOM.render(
   <HashRouter>
     <Switch>
       <Route exact path="/" component={IndexPage} />
+      <Route exact path="/video" component={VideoPage} />
       <Route exact path="/img" component={ImagePage} />
       <Route exact path="/img2" component={ImagePage2} />
       <Route exact path="/img3" component={ImagePage3} />

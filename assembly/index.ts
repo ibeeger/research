@@ -2,7 +2,19 @@
 
 
 export function test():i32 {
-  return 0
+  return 0;
+}
+
+
+export function demo():i16[] {
+    return [1]
+}
+
+export function change():void{
+    store<i32>(0,load<u16>(3));
+    store<i32>(1,load<i32>(2));
+    store<i32>(2,load<i32>(1));
+    store<i32>(3,load<i32>(0));
 }
 
 
@@ -11,7 +23,6 @@ export function calculation(d:i32):void{
     store<u16>(i, d-i);
   }
 }
-
 
 
 
@@ -111,4 +122,24 @@ export function sortColors (byte:i32, index:i32, offset:i32):i32 {
     }
   // }
   return 0;
+}
+
+export function changeColor(byte: i32, sr: i8, sg: i8, sb: i8): void {
+    for (let j = 0; j < byte; j += 4) {
+        let r = load<i32>(j);
+        let g = load<i32>(j + 1);
+        let b = load<i32>(j + 2);
+        let a = load<i32>(j + 3);
+        if (contrast(r, g, b, sr, sg, sb)) {
+            store<i32>(j, 255);
+            store<i32>(j + 1, 2);
+            store<i32>(j + 2, 255);
+            store<i32>(j + 3, 222);
+        } else {
+            store<i32>(j, r);
+            store<i32>(j + 1, g);
+            store<i32>(j + 2, b);
+            store<i32>(j + 3, a);
+        }
+    }
 }

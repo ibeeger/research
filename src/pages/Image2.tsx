@@ -30,8 +30,8 @@ export default class ImagePage extends Component{
     let was = this.wsInstance;
     let img:any = await showImage(e);
     this.setState({
-      width:img['path'][0]['width'],
-      height:img['path'][0]['height']
+      width:img['path'][0]['width']*.1,
+      height:img['path'][0]['height']*.1
     })
     this.media.updateCanvas2(img.path[0], was.clearColor, was.mem); 
   }
