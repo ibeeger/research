@@ -24,7 +24,7 @@ export default class ImagePage extends Component{
     let byteSize = cs.width*cs.height*4;
     this.wsInstance = await getInstance(byteSize);
     // console.log(this.wsInstance);
-    this.change(null);
+    // this.change(null);
   }
 
   updateImage = async (e:any) => {

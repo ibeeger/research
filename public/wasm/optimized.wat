@@ -3,10 +3,11 @@
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
  (type $FUNCSIG$vi (func (param i32)))
  (type $FUNCSIG$ii (func (param i32) (result i32)))
- (type $FUNCSIG$v (func))
+ (type $FUNCSIG$viii (func (param i32 i32 i32)))
  (type $FUNCSIG$iiiiiii (func (param i32 i32 i32 i32 i32 i32) (result i32)))
  (type $FUNCSIG$viiii (func (param i32 i32 i32 i32)))
  (type $FUNCSIG$iiii (func (param i32 i32 i32) (result i32)))
+ (type $FUNCSIG$v (func))
  (import "env" "memory" (memory $0 1))
  (data (i32.const 8) "\0b\00\00\00\01\00\00\00\00\00\00\00\0b\00\00\00\01\03\06\04\t\02\01\08\01\01\t")
  (data (i32.const 40) "\10\00\00\00\01\00\00\00\03\00\00\00\10\00\00\00\18\00\00\00\18\00\00\00\0b\00\00\00\0b")
@@ -319,23 +320,73 @@
  (func $assembly/index/demo (; 6 ;) (type $FUNCSIG$i) (result i32)
   call $~lib/rt/__allocArray
  )
- (func $assembly/index/change (; 7 ;) (type $FUNCSIG$v)
-  i32.const 0
-  i32.const 3
-  i32.load16_u
-  i32.store
-  i32.const 1
-  i32.const 2
-  i32.load
-  i32.store
-  i32.const 2
-  i32.const 1
-  i32.load
-  i32.store
-  i32.const 3
-  i32.const 0
-  i32.load
-  i32.store
+ (func $assembly/index/change (; 7 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  block $break|0
+   local.get $0
+   local.set $4
+   loop $loop|0
+    local.get $4
+    i32.const 255
+    i32.and
+    local.get $0
+    i32.const 1
+    i32.shl
+    i32.const 255
+    i32.and
+    i32.ge_u
+    br_if $break|0
+    i32.const 0
+    local.set $3
+    loop $loop|1
+     block $break|1
+      local.get $3
+      i32.const 4
+      i32.ge_s
+      br_if $break|1
+      local.get $4
+      i32.const 255
+      i32.and
+      local.get $3
+      i32.add
+      local.get $0
+      i32.const 255
+      i32.and
+      i32.sub
+      local.get $1
+      i32.const 255
+      i32.and
+      local.get $3
+      i32.eq
+      if (result i32)
+       local.get $2
+       i32.const 255
+       i32.and
+      else
+       local.get $4
+       i32.const 255
+       i32.and
+       local.get $3
+       i32.add
+       i32.load16_u
+      end
+      i32.store8
+      local.get $3
+      i32.const 1
+      i32.add
+      local.set $3
+      br $loop|1
+     end
+    end
+    local.get $4
+    i32.const 4
+    i32.add
+    local.set $4
+    br $loop|0
+   end
+   unreachable
+  end
  )
  (func $assembly/index/calculation (; 8 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)

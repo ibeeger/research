@@ -10,11 +10,14 @@ export function demo():i16[] {
     return [1]
 }
 
-export function change():void{
-    store<i32>(0,load<u16>(3));
-    store<i32>(1,load<i32>(2));
-    store<i32>(2,load<i32>(1));
-    store<i32>(3,load<i32>(0));
+export function change(offset:u8, color:u8, val:u8):void{
+   for(let i = offset; i<offset*2; i+=4){
+    //    store<u8>(i-offset, 123)
+      for(let j =0; j<4; j++){
+        let _val = j == color ? val : load<u16>(i+j);
+        store<u8>(j+i-offset,_val);
+      }
+   }
 }
 
 

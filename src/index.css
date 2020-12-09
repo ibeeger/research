@@ -25,6 +25,9 @@ section{
 canvas{
   opacity: 1;
 }
+.vcon{
+    color: #fff;
+}
 
 .canvas-cs{
     background-color: #fff;
@@ -65,6 +68,11 @@ video{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.aff{
+    word-break: break-all;
+    height: 100%;
+    overflow: scroll;
 }
 
 .btn{
