@@ -1,14 +1,14 @@
 
 
-
 export function changeTest(size:u32, offset:u32, val:u32):void{
     store<u32>(offset+size, val);
 }
+ 
 
 
 export function change(offset:u32, color:u32, val:u32):void{
    for(let i = offset; i<offset*2; i+=4){
-        let _val0 = color == 0 ? val : load<u32>(i-offset)
+        let _val0:u32 = color == 0 ? val : load<u32>(i-offset)
         let _val1 = color == 1 ? val : load<u32>(i+1-offset)
         let _val2 = color == 2 ? val : load<u32>(i+2-offset);
         store<u32>(i,_val0);

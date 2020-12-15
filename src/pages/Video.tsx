@@ -103,7 +103,7 @@ export default class VideoPage extends Component {
       change = async (e:any) =>{
         if(e.target.files.length){
            this.video = await showVideo(e.target.files[0]);
-           console.log(this.video);
+           console.log(this.video.audioTracks);
             this.video.ontimeupdate = ()=>{
                 this.updateImage();
             }
