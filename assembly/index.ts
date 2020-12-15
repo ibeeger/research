@@ -1,22 +1,24 @@
 
 
 
-export function test():i32 {
-  return 0;
+export function changeTest(size:u32, offset:u32, val:u32):void{
+    store<u32>(offset+size, val);
 }
 
 
-export function demo():i16[] {
-    return [1]
-}
-
-export function change(offset:u8, color:u8, val:u8):void{
+export function change(offset:u32, color:u32, val:u32):void{
    for(let i = offset; i<offset*2; i+=4){
-    //    store<u8>(i-offset, 123)
-      for(let j =0; j<4; j++){
-        let _val = j == color ? val : load<u16>(i+j);
-        store<u8>(j+i-offset,_val);
-      }
+        let _val0 = color == 0 ? val : load<u32>(i-offset)
+        let _val1 = color == 1 ? val : load<u32>(i+1-offset)
+        let _val2 = color == 2 ? val : load<u32>(i+2-offset);
+        store<u32>(i,_val0);
+        store<u32>(i+1,_val1);
+        store<u32>(i+2,_val2);
+        store<u32>(i+3,255);
+        // store<u32>(i,i%255);
+        // store<u32>(i+1,(i+1)%255);
+        // store<u32>(i+2,(i+2)%255);
+        // store<u32>(i+3,(i+3)%255);
    }
 }
 
@@ -26,7 +28,6 @@ export function calculation(d:i32):void{
     store<u16>(i, d-i);
   }
 }
-
 
 
 //对比颜色
@@ -48,7 +49,6 @@ export function crypto2(d:i32):i32 {
   }
   return str[3];
 }
-
 
 
 
@@ -125,24 +125,4 @@ export function sortColors (byte:i32, index:i32, offset:i32):i32 {
     }
   // }
   return 0;
-}
-
-export function changeColor(byte: i32, sr: i8, sg: i8, sb: i8): void {
-    for (let j = 0; j < byte; j += 4) {
-        let r = load<i32>(j);
-        let g = load<i32>(j + 1);
-        let b = load<i32>(j + 2);
-        let a = load<i32>(j + 3);
-        if (contrast(r, g, b, sr, sg, sb)) {
-            store<i32>(j, 255);
-            store<i32>(j + 1, 2);
-            store<i32>(j + 2, 255);
-            store<i32>(j + 3, 222);
-        } else {
-            store<i32>(j, r);
-            store<i32>(j + 1, g);
-            store<i32>(j + 2, b);
-            store<i32>(j + 3, a);
-        }
-    }
 }

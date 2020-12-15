@@ -83,6 +83,20 @@ export function ab2str(
 }
 
 
+export function showVideo(bf: any){
+    let blob = new Blob([bf], {type:'video/mpeg'});
+    var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL(blob);
+    var vd = document.createElement('video');
+    return new Promise(function(resolve){
+        vd.onloadeddata = function(){
+             console.log('123123123',vd.videoWidth);
+             vd.play()
+             resolve(vd);
+         }
+        vd.src = imageUrl;
+    })
+}
 
 
 export function showImage(bf: any) {

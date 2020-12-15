@@ -27,14 +27,14 @@ canvas{
 }
 .vcon{
     color: #fff;
+    flex-direction: column;
 }
-
+.vd-header{
+    position: relative;
+    height: 120px;
+}
 .canvas-cs{
     background-color: #fff;
-    left: 0;
-    top:0;
-    position: absolute;
-    left: 0;
 }
 header{
   height: 50px;
